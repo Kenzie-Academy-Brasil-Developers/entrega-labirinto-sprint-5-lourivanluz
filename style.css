@@ -1,0 +1,89 @@
+html,body,header,main,h1,div,p{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+header h1 {
+    font-family: 'Bungee Outline', cursive;
+    text-align: center;
+    font-size: 60px;
+}
+
+.mapa{
+    background-color: rgb(219, 217, 217);
+    max-width: 800px;
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+.celula {
+    width: calc(80vw/21);
+    height: calc(80vw/21);
+    max-width: 38.09px;
+    max-height: 38.09px;
+}
+.parede{
+    background-color: black;
+}
+.player {
+    background-color: red;
+}
+
+.botoes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoes p {
+    font-size: 20px;
+}
+
+.botoes button {
+    width: 80px;
+    height: 30px;
+    margin: 15px 30px;
+    border: none;
+    border-radius: 7px;
+    background-color: rgb(168, 103, 230);
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+
+.telaVitoria{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.418);
+}
+
+.telaVitoria p {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    font-size: 70px;
+    font-family: 'Modak', cursive;
+    color: red;
+    text-shadow: 2px 2px 0 white, 2px -2px 0 white, -2px 2px 0 white, -2px -2px 0 white, 2px 0px 0 white, 0px 2px 0 white, -2px 0px 0 white, 0px -2px 0 white, 0px 5px 1px rgba(206,89,55,0);
+    animation: 2s linear 0s infinite alternate pular
+}
+
+@keyframes pular {
+    0%{
+        font-size: 60px;
+    }
+    50%{
+        font-size: 70px;
+    }
+    100%{
+        font-size: 60px;
+    }
+}
