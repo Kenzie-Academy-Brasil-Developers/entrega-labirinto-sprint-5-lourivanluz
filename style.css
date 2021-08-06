@@ -11,24 +11,32 @@ header h1 {
 }
 
 .mapa{
-    background-color: rgb(219, 217, 217);
     max-width: 800px;
     width: 80vw;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
 }
+main > div:nth-child(2){
+    background-color: black;
+}
 .celula {
+    background-color: rgb(236, 235, 235);
     width: calc(80vw/21);
     height: calc(80vw/21);
     max-width: 38.09px;
     max-height: 38.09px;
+
+
 }
 .parede{
-    background-color: black;
+    background-image: url(./src/img/blocoParede.png);
+    background-size: cover;
+    box-sizing: content-box;
 }
 .player {
-    background-color: red;
+    background-image: url(./src/img/Dplayer.png);
+    background-size: cover;
 }
 
 .botoes{
