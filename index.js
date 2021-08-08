@@ -1,4 +1,4 @@
-import  mapSelect  from "./src/modulos/mapas.js"
+import  mapSelect, { quantidadeMapa }  from "./src/modulos/mapas.js"
 
 const btReduzir = document.querySelector('#reduzir')
 const btAdicionar = document.querySelector('#adicionar')
@@ -13,7 +13,9 @@ const reduzir = () =>{
 const adicionar = () =>{
     const fase = document.querySelector('.fase')
     const numeroDaFase = fase.innerText
-    if(Number(numeroDaFase) < 3 ){
+    const qtdMapa = quantidadeMapa()
+    console.log(quantidadeMapa())
+    if(Number(numeroDaFase) < qtdMapa ){
         fase.innerText = Number(numeroDaFase)+1
     }
 }
@@ -57,7 +59,7 @@ const montaMap = (mapLayout) =>{
 const reset = () =>{
     const mapa = document.querySelector('.mapa')
     mapa.remove()
-    const local = document.querySelector('main > div:nth-child(2)')
+    const local = document.querySelector('main > div:nth-child(3)')
     local.appendChild(document.createElement('div')).classList.add('mapa')
     const nextMap = document.querySelector('.fase').innerText
     const selectorMap = 'mapa'+nextMap

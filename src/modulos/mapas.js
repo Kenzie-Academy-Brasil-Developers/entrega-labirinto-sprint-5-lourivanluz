@@ -1,5 +1,4 @@
-const selectMap = (mapa) =>{
-    const mapas = 
+const mapas = 
     {'mapa1':
    ["WWWWWWWWWWWWWWWWWWWWW",
     "W   W     W     W W W",
@@ -52,14 +51,24 @@ const selectMap = (mapa) =>{
      "WWWWWWWWWWWWWWWWWWWWW",
      ]}
 
+
+
+
+
+const selectMap = (mapa) =>{
      return mapas[mapa]
 }
 
-
-const criaMapas = (arrObj) => {
-    
+export const quantidadeMapa = () =>{
+    const chaves = Object.keys(mapas)
+    return chaves.length
 }
 
-
+export const addMapa = (obj)=>{
+    const quantidade = quantidadeMapa()
+    const mapaName = 'mapa'+(quantidade+1)
+    mapas[mapaName] = obj
+    console.log(mapas)
+}
 
 export default selectMap

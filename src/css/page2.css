@@ -1,0 +1,50 @@
+html,body,header,main,h1,div,p{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+header h1 {
+    font-family: 'Bungee Outline', cursive;
+    text-align: center;
+    font-size: 60px;
+}
+
+.seletor {
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+    .start{
+        background-color: blue;
+        border: 3px solid rgb(4, 4, 190);
+    }
+    .parede{
+        background-color: gray;
+        border: 3px solid rgb(92, 92, 92);
+    }
+    .fim{
+        background-color: red;
+        border: 3px solid rgb(160, 1, 1);
+    }
+
+.selecionado{
+    border: 3px solid black;
+}
+
+.mapa{
+    max-width: 800px;
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+.celula {
+    border: 1px solid grey;
+    max-width: 38.09px;
+    max-height: 38.09px;
+}
+
+.parede{
+    background-color: grey;
+}
