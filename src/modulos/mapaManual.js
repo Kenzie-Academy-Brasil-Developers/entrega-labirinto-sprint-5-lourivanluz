@@ -1,4 +1,4 @@
-import {addMapa} from './mapas.js'
+import {addMapa,alteraTamanho} from './mapas.js'
 
 let classeSelecionada = 'start'
 let tamanho = '25.80'
@@ -82,6 +82,7 @@ const criaCelulas = (local,linhas=15,colunas=21) =>{
 
             celula.addEventListener('click',(elemento)=>{
                 adicionaClasseSelecionada(elemento.target)
+                console.dir(elemento.target)
             })
 
             local.appendChild(celula)
@@ -117,34 +118,16 @@ const mostrarBotao = ()=>{
     diminuir.style.display = 'block'
 }
 
-const alteraTamanho = (tamanhu,colunas,operacao='-') =>{
-    let novoTamanho = Number(tamanhu)
-
-    if(operacao !=='+') novoTamanho -= 10
-    if(operacao === '+') novoTamanho += 10
-
-    if((novoTamanho*colunas)<800 && (novoTamanho*colunas)>107){
-        const celulas = document.querySelectorAll('.celula')
-        const mapa = document.querySelector('.mapa')
-        mapa.setAttribute('style','width:'+(novoTamanho*colunas)+'px;')
-
-        celulas.forEach(elemento =>{
-            elemento.style.width = novoTamanho+'px'
-            elemento.style.height = novoTamanho+'px'
-        })
-
-        tamanho = novoTamanho
-    }
-
-}
-
 document.querySelector('.aumentar').addEventListener('click',()=>{
     const colunas = Number(document.querySelector('#coluna').value)
-    alteraTamanho(tamanho,colunas,'+')
+    let novoTamanho = Number(tamanho)
+    tamanho = alteraTamanho(novoTamanho,colunas,'+')
 })
 document.querySelector('.diminuir').addEventListener('click',()=>{
     const colunas = Number(document.querySelector('#coluna').value)
-    alteraTamanho(tamanho,colunas)
+    let novoTamanho = Number(tamanho)
+    tamanho = alteraTamanho(novoTamanho,colunas)
+
 })
 
 const mostrarResultado = (mapa) =>{

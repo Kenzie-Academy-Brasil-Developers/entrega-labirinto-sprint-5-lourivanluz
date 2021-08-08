@@ -1,4 +1,7 @@
-import  mapSelect, { quantidadeMapa }  from "./src/modulos/mapas.js"
+import  mapSelect, { quantidadeMapa,alteraTamanho }  from "./src/modulos/mapas.js"
+
+let colunas = ''
+let tamanho = '25.80'
 
 const btReduzir = document.querySelector('#reduzir')
 const btAdicionar = document.querySelector('#adicionar')
@@ -14,7 +17,6 @@ const adicionar = () =>{
     const fase = document.querySelector('.fase')
     const numeroDaFase = fase.innerText
     const qtdMapa = quantidadeMapa()
-    console.log(quantidadeMapa())
     if(Number(numeroDaFase) < qtdMapa ){
         fase.innerText = Number(numeroDaFase)+1
     }
@@ -23,12 +25,13 @@ const adicionar = () =>{
 btReduzir.addEventListener('click',()=>{
     reduzir()
     reset()
-    
+    proximoMapa()
 })
 
 btAdicionar.addEventListener('click',()=>{
     adicionar()
     reset()
+    proximoMapa()
     
 })
 
@@ -44,6 +47,9 @@ const criaCelula = (tipoCelula) =>{
 
 const montaMap = (mapLayout) =>{
     const mapa = document.querySelector('.mapa')
+    colunas=mapLayout[0].length
+    mapa.setAttribute('style','width: calc(25.80px*'+colunas+');')
+
     for (let linha = 0; linha<mapLayout.length; linha++){
         for(let coluna = 0; coluna<mapLayout[linha].length; coluna++){
 
@@ -61,10 +67,16 @@ const reset = () =>{
     mapa.remove()
     const local = document.querySelector('.local')
     local.appendChild(document.createElement('div')).classList.add('mapa')
-   // const nextMap = document.querySelector('.fase').innerText
-   // const selectorMap = 'mapa'+nextMap
-   // montaMap(mapSelect(selectorMap))
 }
+
+
+const proximoMapa = () =>{
+    tamanho = '25.80'
+    const nextMap = document.querySelector('.fase').innerText
+    const selectorMap = 'mapa'+nextMap
+    montaMap(mapSelect(selectorMap))
+}
+
 
 const movimentar = (letra,posicao)=>{
     const posicaoXY = posicao.split(':')
@@ -99,16 +111,20 @@ const criaTelaVitoria =() =>{
     div.addEventListener('click',()=>{
         adicionar()
         reset()
+        proximoMapa()
         div.remove()
     })
 }
 
 const atualizaSprite = (letra) =>{
     const player = document.querySelector('.player')
-    if(letra === 'w') player.setAttribute('style','background-image: url(./src/img/Wplayer.png)')
-    if(letra === 's') player.setAttribute('style','background-image: url(./src/img/Splayer.png)')
-    if(letra === 'a') player.setAttribute('style','background-image: url(./src/img/Aplayer.png)')
-    if(letra === 'd') player.setAttribute('style','background-image: url(./src/img/Dplayer.png)')
+    
+    if(letra === 'w') player.style.backgroundImage = 'url(./src/img/Wplayer.png)'
+    if(letra === 's') player.style.backgroundImage = 'url(./src/img/Splayer.png)'
+    if(letra === 'a') player.style.backgroundImage = 'url(./src/img/Aplayer.png)'
+    if(letra === 'd') player.style.backgroundImage = 'url(./src/img/Dplayer.png)'
+
+    console.dir(player)
 }
 
 const atualizaPosicao = (letra) =>{
@@ -118,9 +134,8 @@ const atualizaPosicao = (letra) =>{
     const alvo = buscaPorAtributo('block-position',novoMovimento)
     if(podeMovimentar(alvo)) {
         alvo.classList.add('player')
-        atualizaSprite(letra)
         jogador.classList.remove('player')
-        jogador.setAttribute('style','')
+        jogador.style.backgroundImage = ''
         if(consdicaoVitoria(alvo)) criaTelaVitoria()
     }
 }
@@ -139,10 +154,21 @@ document.querySelector('#criarMapa').addEventListener('click',()=>{
     criaMapaTexto(mataTexto)
 })
 
+document.querySelector('.aumentar').addEventListener('click',()=>{
+    let novoTamanho = Number(tamanho)
+    tamanho = alteraTamanho(novoTamanho,colunas,'+')
+})
+document.querySelector('.diminuir').addEventListener('click',()=>{
+    let novoTamanho = Number(tamanho)
+    tamanho = alteraTamanho(novoTamanho,colunas)
+})
+
+
 const criaMapaTexto= (texto) =>{
     const teste = texto.split(',')
     reset()
     montaMap(teste)
 }
+
 
 montaMap(mapSelect('mapa1'))

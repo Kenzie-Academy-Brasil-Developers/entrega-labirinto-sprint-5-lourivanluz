@@ -72,4 +72,27 @@ export const addMapa = (obj)=>{
     console.log(mapas)
 }
 
+export const alteraTamanho = (novoTamanho,colunas,operacao='-') =>{
+
+    if(operacao !=='+') novoTamanho -= 3
+    if(operacao === '+') novoTamanho += 3
+
+
+    if((novoTamanho*colunas)<800 && (novoTamanho*colunas)>107){
+        const celulas = document.querySelectorAll('.celula')
+        const mapa = document.querySelector('.mapa')
+        mapa.setAttribute('style','width:'+(novoTamanho*colunas)+'px;')
+
+        celulas.forEach(elemento =>{
+            elemento.style.width = novoTamanho+'px'
+            elemento.style.height = novoTamanho+'px'
+        })
+        return novoTamanho
+    }  
+
+    return '35.80'
+    
+}
+
+
 export default selectMap
