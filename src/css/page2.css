@@ -10,41 +10,64 @@ header h1 {
     font-size: 60px;
 }
 
-.seletor {
-    height: 60px;
-    width: 60px;
-    border-radius: 100%;
+.seletores {
+    display: flex;
+    background-color: purple;
+    justify-content: space-evenly;
 }
-    .start{
-        background-color: blue;
-        border: 3px solid rgb(4, 4, 190);
+
+    .seletor {
+        height: 60px;
+        width: 60px;
+        border-radius: 100%;
+        margin: 20px;
     }
-    .parede{
-        background-color: gray;
-        border: 3px solid rgb(92, 92, 92);
-    }
-    .fim{
-        background-color: red;
-        border: 3px solid rgb(160, 1, 1);
-    }
+        .start{
+            background-color: blue;
+            border: 3px solid rgb(4, 4, 190);
+        }
+        .parede{
+            background-color: gray;
+            border: 3px solid rgb(92, 92, 92);
+        }
+        .fim{
+            background-color: red;
+            border: 3px solid rgb(160, 1, 1);
+        }
+        .nada{
+            background-color: white;
+            border: 3px solid rgb(207, 206, 206);
+        }
 
 .selecionado{
     border: 3px solid black;
 }
 
+.sizeButon{
+    position: relative;
+}
+
+    .aumentar, .diminuir{
+        position: absolute;
+        display: none;
+        right: 30px;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+    }
+        .diminuir{
+            top: 60px;
+        }
+
 .mapa{
     max-width: 800px;
-    width: 80vw;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
 }
-.celula {
-    border: 1px solid grey;
-    max-width: 38.09px;
-    max-height: 38.09px;
-}
+    .celula {
+        border: 1px solid grey;
+        width: 25.80px;
+        height: 25.80px;
+    }
 
-.parede{
-    background-color: grey;
-}

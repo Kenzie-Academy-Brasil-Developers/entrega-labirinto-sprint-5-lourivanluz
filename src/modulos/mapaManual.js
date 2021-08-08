@@ -1,21 +1,15 @@
 import {addMapa} from './mapas.js'
 
 let classeSelecionada = 'start'
+let tamanho = '25.80'
 
 const selecionaClasse = (elemento) =>{
     const classes = elemento.className
-    if ( classes.includes('parede')){
-        return 'parede'
-    }
-    if ( classes.includes('start')){
-        return 'start'
-    }
-    if ( classes.includes('fim')){
-        return 'fim'
-    }
-    if ( classes.includes('nada')){
-        return 'nada'
-    }
+
+    if ( classes.includes('parede')) return 'parede'
+    if ( classes.includes('start')) return 'start'
+    if ( classes.includes('fim')) return 'fim'
+    if ( classes.includes('nada')) return 'nada'
     
 }
 
@@ -41,12 +35,13 @@ const apagaTela = () =>{
 
 const btCriaTela = document.querySelector('#criaTela')
 btCriaTela.addEventListener('click',()=>{
+    tamanho = '25.80'
     apagaTela()
     criaTela()
     const tela = document.querySelector('.mapa')
     const linhas = Number(document.querySelector('#linha').value)
     const colunas = Number(document.querySelector('#coluna').value)
-    
+    mostrarBotao()
     criaCelulas(tela,linhas,colunas)
 })
 
@@ -78,14 +73,17 @@ const adicionaClasseSelecionada = (elemento)=>{
 }
 
 const criaCelulas = (local,linhas=15,colunas=21) =>{
+    local.setAttribute('style','width: calc(25.80px*'+colunas+');')
+
     for(let linha = 0; linha<linhas;linha++){
         for(let coluna = 0; coluna<colunas; coluna++){
             const celula = document.createElement('div')
             celula.classList.add('celula','nada')
-            celula.setAttribute('style','width: calc(80vw/'+colunas+');height: calc(80vw/'+colunas+');max-width: calc(800px/'+colunas+');max-height: calc(800px/'+colunas+');')
+
             celula.addEventListener('click',(elemento)=>{
                 adicionaClasseSelecionada(elemento.target)
             })
+
             local.appendChild(celula)
         }
     }
@@ -98,23 +96,60 @@ const fazMapa = (colunas) =>{
 
     celulas.forEach((elemento,index)=>{
 
-        if(elemento.classList.contains('parede')){
-            linha+='W'
-        }
-        if(elemento.classList.contains('start')){
-            linha+='S'
-        }
-        if(elemento.classList.contains('fim')){
-            linha+='F'
-        }
-        if(elemento.classList.contains('nada')){
-            linha+=' '
-        }
+        if(elemento.classList.contains('parede')) linha+='W'
+        if(elemento.classList.contains('start'))  linha+='S'
+        if(elemento.classList.contains('fim'))    linha+='F'
+        if(elemento.classList.contains('nada'))   linha+=' '
 
         if(  (index+1)%colunas === 0 ){
             mapa.push(linha)
             linha = ''
         }
     })
+    mostrarResultado(mapa)
     addMapa(mapa)
+}
+
+const mostrarBotao = ()=>{
+    const aumentar = document.querySelector('.aumentar')
+    const diminuir = document.querySelector('.diminuir')
+    aumentar.style.display = 'block'
+    diminuir.style.display = 'block'
+}
+
+const alteraTamanho = (tamanhu,colunas,operacao='-') =>{
+    let novoTamanho = Number(tamanhu)
+
+    if(operacao !=='+') novoTamanho -= 10
+    if(operacao === '+') novoTamanho += 10
+
+    if((novoTamanho*colunas)<800 && (novoTamanho*colunas)>107){
+        const celulas = document.querySelectorAll('.celula')
+        const mapa = document.querySelector('.mapa')
+        mapa.setAttribute('style','width:'+(novoTamanho*colunas)+'px;')
+
+        celulas.forEach(elemento =>{
+            elemento.style.width = novoTamanho+'px'
+            elemento.style.height = novoTamanho+'px'
+        })
+
+        tamanho = novoTamanho
+    }
+
+}
+
+document.querySelector('.aumentar').addEventListener('click',()=>{
+    const colunas = Number(document.querySelector('#coluna').value)
+    alteraTamanho(tamanho,colunas,'+')
+})
+document.querySelector('.diminuir').addEventListener('click',()=>{
+    const colunas = Number(document.querySelector('#coluna').value)
+    alteraTamanho(tamanho,colunas)
+})
+
+const mostrarResultado = (mapa) =>{
+    const resultado = document.querySelector('#resultado')
+    resultado.value = mapa   
+    resultado.select()
+    document.execCommand('copy')
 }

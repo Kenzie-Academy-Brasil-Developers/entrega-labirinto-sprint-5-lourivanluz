@@ -59,7 +59,7 @@ const montaMap = (mapLayout) =>{
 const reset = () =>{
     const mapa = document.querySelector('.mapa')
     mapa.remove()
-    const local = document.querySelector('main > div:nth-child(3)')
+    const local = document.querySelector('.local')
     local.appendChild(document.createElement('div')).classList.add('mapa')
     const nextMap = document.querySelector('.fase').innerText
     const selectorMap = 'mapa'+nextMap

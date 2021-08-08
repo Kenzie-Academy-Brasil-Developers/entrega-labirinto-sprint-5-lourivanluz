@@ -1,7 +1,13 @@
-html,body,header,main,h1,div,p{
+html,body,header,main,h1,div,p,ul,li{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
 }
 
 header h1 {
@@ -26,8 +32,6 @@ main > div:nth-child(3){
     height: calc(80vw/21);
     max-width: 38.09px;
     max-height: 38.09px;
-
-
 }
 .parede{
     background-image: url(./src/img/blocoParede.png);
@@ -36,6 +40,10 @@ main > div:nth-child(3){
 }
 .player {
     background-image: url(./src/img/Dplayer.png);
+    background-size: cover;
+}
+.final{
+    background-image: url(./src/img/porta.png) ;
     background-size: cover;
 }
 

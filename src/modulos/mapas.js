@@ -34,22 +34,23 @@ const mapas =
     "WWWWWWWWWWWWWWWWWWWWW",
     ],
     'mapa3':
-    ["WWWWWWWWWWWWWWWWWWWWW",
-     "W W W           W   W",
-     "W W W WWW WWWWW WWW W",
-     "S W   W       W W   W",
-     "W WWWWWWW W WWW W W W",
-     "W         W     W WWW",
-     "W WWW WWWWW WWWWW W F",
-     "W W   W   W W     W W",
-     "W WWWWW W W W WWW W W",
-     "W W   W W W   W W W W",
-     "WWWWW W W WWWWW   W W",
-     "W       W       WWW W",
-     "W WWWWWWWWWWWWWWW W W",
-     "W                   W",
-     "WWWWWWWWWWWWWWWWWWWWW",
+    ['WSWWWWWWWWWWWWWWWWWWW',
+     'W     W             W',
+     'WW  WW   WW  W W W  W',
+     'W W     W  W W W WWWW',
+     'W  W W       W W  W W',
+     'W     W WWWWW   WW  W',
+     'WWWW  W    W W      W',
+     'W   WWWWW WW  WWWW  W',
+     'WW  W    WW       W W',
+     'W W W W     WW  WFW W',
+     'W W   W W WWW  W W  W',
+     'W W W WWW W W W     W',
+     'W WW   W W   W  W W W',
+     'W    W          W W W',
+     'WWWWWWWWWWWWWWWWWWWWW'
      ]}
+     
 
 
 
