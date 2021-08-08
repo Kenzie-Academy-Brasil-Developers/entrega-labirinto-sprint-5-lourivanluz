@@ -67,6 +67,7 @@ main > div:nth-child(3){
     font-weight: bold;
     color: white;
     cursor: pointer;
+    padding: 5px;
 }
 
 

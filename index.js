@@ -61,9 +61,9 @@ const reset = () =>{
     mapa.remove()
     const local = document.querySelector('.local')
     local.appendChild(document.createElement('div')).classList.add('mapa')
-    const nextMap = document.querySelector('.fase').innerText
-    const selectorMap = 'mapa'+nextMap
-    montaMap(mapSelect(selectorMap))
+   // const nextMap = document.querySelector('.fase').innerText
+   // const selectorMap = 'mapa'+nextMap
+   // montaMap(mapSelect(selectorMap))
 }
 
 const movimentar = (letra,posicao)=>{
@@ -133,4 +133,16 @@ document.addEventListener('keydown',(evento)=>{
     }
     
 })
+
+document.querySelector('#criarMapa').addEventListener('click',()=>{
+    const mataTexto = document.querySelector('#mapText').value
+    criaMapaTexto(mataTexto)
+})
+
+const criaMapaTexto= (texto) =>{
+    const teste = texto.split(',')
+    reset()
+    montaMap(teste)
+}
+
 montaMap(mapSelect('mapa1'))
